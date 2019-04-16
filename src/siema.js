@@ -473,6 +473,15 @@ export default class Siema {
   touchmoveHandler(e) {
     e.stopPropagation();
 
+    const isIOS = function() {
+      return /iPad|iPhone|iPod/.test(window.navigator.userAgent) && !window.MSStream;
+    };
+
+    if (isIOS() && e.touches.length > 1) {
+      event.preventDefault();
+      return;
+    }
+
     if (this.drag.letItGo === null) {
       this.drag.letItGo = Math.abs(this.drag.startY - e.touches[0].pageY) < Math.abs(this.drag.startX - e.touches[0].pageX);
     }

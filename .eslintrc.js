@@ -152,7 +152,7 @@ module.exports = {
       }
     ],
     'linebreak-style': [
-      2,
+      0,
       'unix'
     ],
     'lines-around-directive': [
