@@ -100,6 +100,7 @@ export default class Siema {
         letItGo: null,
         preventClick: false,
       };
+      this.lastTouchEnd = 0;
 
       // Touch events
       this.selector.addEventListener('touchstart', this.touchstartHandler);
@@ -457,6 +458,18 @@ export default class Siema {
    * touchend event handler
    */
   touchendHandler(e) {
+    const isIOS = function() {
+      return /iPad|iPhone|iPod/.test(window.navigator.userAgent) && !window.MSStream;
+    };
+    if (isIOS) {
+      // eslint-disable-next-line prefer-const
+      let now = (new Date()).getTime();
+      if (now - this.lastTouchEnd <= 30) {
+        event.preventDefault();
+        return;
+      }
+      this.lastTouchEnd = now;
+    }
     e.stopPropagation();
     this.pointerDown = false;
     this.enableTransition();
