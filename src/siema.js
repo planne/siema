@@ -464,7 +464,7 @@ export default class Siema {
     if (isIOS) {
       // eslint-disable-next-line prefer-const
       let now = (new Date()).getTime();
-      if (now - this.lastTouchEnd <= 30) {
+      if (now - this.lastTouchEnd <= 300) {
         event.preventDefault();
         return;
       }
