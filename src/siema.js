@@ -470,6 +470,7 @@ export default class Siema {
       }
       this.lastTouchEnd = now;
     }
+    window.callbackCloseListArea(e);
     e.stopPropagation();
     this.pointerDown = false;
     this.enableTransition();
